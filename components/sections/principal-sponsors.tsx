@@ -10,18 +10,36 @@ interface PrincipalSponsor {
 
 export function PrincipalSponsors() {
   // Helper component for elegant section titles
-  const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-    <h3 className="text-[18px] sm:text-base md:text-lg lg:text-xl font-serif font-semibold text-[#666956] mb-2 sm:mb-2.5 md:mb-3 text-center tracking-wide">
-      {children}
-    </h3>
-  )
+  const SectionTitle = ({
+    children,
+    align = "center",
+    className = "",
+  }: {
+    children: React.ReactNode
+    align?: "left" | "center" | "right"
+    className?: string
+  }) => {
+    const textAlign =
+      align === "right" ? "text-right" : align === "left" ? "text-left" : "text-center"
+    return (
+      <h3 className={`anton-regular text-base sm:text-lg md:text-xl lg:text-2xl font-bold uppercase text-[#BB8A3D] mb-2 sm:mb-3 md:mb-4 tracking-[0.15em] ${textAlign} ${className}`}>
+        {children}
+      </h3>
+    )
+  }
 
-  // Helper component for name items
-  const NameItem = ({ name }: { name: string }) => (
-    <div className="flex items-center justify-center py-1 sm:py-1.5 md:py-2 px-1 sm:px-1.5 w-full min-h-[2.5rem] sm:min-h-[3rem]">
-      <p className="text-[#666956] text-xs sm:text-sm md:text-base font-light text-center leading-tight break-words">{name}</p>
-    </div>
-  )
+  // Helper component for name items with alignment
+  const NameItem = ({ name, align = "center" }: { name: string, align?: "left" | "center" | "right" }) => {
+    const containerAlign =
+      align === "right" ? "items-end" : align === "left" ? "items-start" : "items-center"
+    const textAlign =
+      align === "right" ? "text-right" : align === "left" ? "text-left" : "text-center"
+    return (
+      <div className={`flex flex-col ${containerAlign} justify-center py-1 sm:py-1.5 md:py-2 w-full`}>
+        <p className={`text-slate-700 text-[13px] sm:text-sm md:text-base font-medium leading-snug break-words ${textAlign}`}>{name}</p>
+      </div>
+    )
+  }
 
   // Remote data state
   const [sponsors, setSponsors] = useState<PrincipalSponsor[]>([])
@@ -94,130 +112,86 @@ export function PrincipalSponsors() {
         />
       </div>
 
-      {/* Custom larger title */}
-      <div className="relative text-center mb-12 sm:mb-16 md:mb-20 px-4" style={{ zIndex: 10 }}>
-        {/* Decorative ornaments */}
-        <div className="flex items-center justify-center gap-3 sm:gap-6 mb-4 sm:mb-6">
-          <div className="w-8 sm:w-16 h-px bg-gradient-to-r from-transparent via-[#EFBFBB]/60 to-[#EFBFBB]/30" />
-          <div className="flex gap-1.5 sm:gap-2">
-            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-[#EFBFBB] rounded-full" />
-            <div className="w-0.5 sm:w-1 h-0.5 sm:h-1 bg-[#FFE5E4] rounded-full self-center" />
-            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-[#EFBFBB] rounded-full" />
-          </div>
-          <div className="w-8 sm:w-16 h-px bg-gradient-to-l from-transparent via-[#EFBFBB]/60 to-[#EFBFBB]/30" />
-        </div>
-        
-        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-bold text-[#FFE5E4] mb-4 sm:mb-6 text-balance drop-shadow-lg relative px-2">
-          <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-br from-[#B08981] via-[#EFBFBB] to-[#FFE5E4]">Principal Sponsors</span>
-          {/* Text glow effect */}
-          <span className="absolute inset-0 text-[#EFBFBB]/25 blur-2xl -z-10">Principal Sponsors</span>
+      {/* Section Header */}
+      <div className="relative z-10 text-center mb-8 sm:mb-10 md:mb-12 px-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-[#FFFFFF] mb-3 sm:mb-4 text-balance">
+          Principal Sponsors
         </h2>
-        
-        <p className="text-base sm:text-lg md:text-xl text-[#FFE5E4]/95 font-sans font-light max-w-2xl mx-auto px-2 sm:px-4 leading-relaxed">
+        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif font-semibold text-[#F1EDE2] mb-3 sm:mb-4">
           Our Beloved Godparents
-        </p>
-        
-        {/* Bottom decorative ornaments */}
-        <div className="flex items-center justify-center gap-3 sm:gap-6 mt-6 sm:mt-8">
-          <div className="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent via-[#EFBFBB]/40 to-[#FFE5E4]/20" />
-          <div className="w-0.5 sm:w-1 h-0.5 sm:h-1 bg-[#EFBFBB] rounded-full" />
-          <div className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent via-[#EFBFBB]/40 to-[#FFE5E4]/20" />
-        </div>
+        </h3>
       </div>
 
       {/* Sponsors content */}
-      <div className="relative w-full" style={{ zIndex: 10 }}>
-        <div className="flex justify-center px-2 sm:px-4">
-          <div className="max-w-6xl w-full">
-            {/* Enhanced sponsors container */}
-            <div className="relative">
-              {/* Multiple layered glow effects */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-[#B08981]/20 via-[#EFBFBB]/15 to-[#B08981]/20 rounded-3xl blur-2xl opacity-40 animate-pulse" />
-              <div className="absolute -inset-3 bg-gradient-to-r from-[#B08981]/30 via-[#EFBFBB]/20 to-[#B08981]/30 rounded-3xl blur-md opacity-50 animate-pulse" />
-
-              {/* Enhanced decorative corner accents */}
-              <div className="absolute -top-2 -left-2 w-5 h-5 bg-gradient-to-br from-[#B08981] via-[#EFBFBB] to-[#FFE5E4] rounded-full blur-sm opacity-70 shadow-lg" />
-              <div className="absolute -top-2 -right-2 w-5 h-5 bg-gradient-to-bl from-[#B08981] via-[#EFBFBB] to-[#FFE5E4] rounded-full blur-sm opacity-70 shadow-lg" />
-              <div className="absolute -bottom-2 -left-2 w-5 h-5 bg-gradient-to-tr from-[#B08981] via-[#EFBFBB] to-[#FFE5E4] rounded-full blur-sm opacity-70 shadow-lg" />
-              <div className="absolute -bottom-2 -right-2 w-5 h-5 bg-gradient-to-tl from-[#B08981] via-[#EFBFBB] to-[#FFE5E4] rounded-full blur-sm opacity-70 shadow-lg" />
-
-              {/* Main sponsors card with enhanced multi-layer styling */}
-              <div className="relative bg-gradient-to-br from-[#FFE5E4] via-[#EFBFBB]/25 to-[#FFE5E4] backdrop-blur-md rounded-2xl sm:rounded-3xl p-2.5 sm:p-4 md:p-6 lg:p-8 xl:p-9 border-2 border-[#B08981]/50 shadow-[0_8px_32px_rgba(102,105,86,0.25),0_0_0_1px_rgba(176,137,129,0.15)]">
-                
-                {/* Inner decorative border with gradient */}
-                <div className="absolute inset-1 sm:inset-2 border border-[#B08981]/40 rounded-xl sm:rounded-2xl" />
-                
-                {/* Additional inner glow */}
-                <div className="absolute inset-2 sm:inset-3 bg-gradient-to-br from-[#EFBFBB]/15 to-transparent rounded-xl sm:rounded-2xl" />
-                
-                {/* Sponsors content */}
-                <div className="relative z-10 w-full">
-                  {isLoading ? (
-                    <div className="flex items-center justify-center py-10 sm:py-12 md:py-16">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 border-4 border-[#B08981]/30 border-t-[#B08981] rounded-full animate-spin" />
-                      <p className="ml-3 sm:ml-4 text-[#666956] font-serif text-sm sm:text-base md:text-lg">Loading sponsors...</p>
-                    </div>
-                  ) : error ? (
-                    <div className="text-center py-10 sm:py-12 md:py-16">
-                      <p className="text-red-400 font-serif mb-3 sm:mb-4 text-sm sm:text-base">{error}</p>
-                      <button 
-                        onClick={fetchSponsors} 
-                        className="px-6 py-2.5 bg-gradient-to-r from-[#666956] to-[#8D8E7C] hover:from-[#8D8E7C] hover:to-[#666956] text-[#FFE5E4] rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95 shadow-md"
-                      >
-                        Try again
-                      </button>
-                    </div>
-                  ) : (
-                    <>
-                      {sponsorPairs.length === 0 ? (
-                        <div className="text-center py-8 sm:py-10">
-                          <p className="text-[#666956]/70 text-[10px] sm:text-xs text-center">No entries</p>
-                        </div>
-                      ) : (
-                        <div className="mb-5 sm:mb-6 md:mb-8 lg:mb-10">
-                          <div className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-3 sm:gap-x-4 md:gap-x-6 lg:gap-x-8 mb-2 sm:mb-3 md:mb-4">
-                            <SectionTitle>Male Principal Sponsors</SectionTitle>
-                            <SectionTitle>Female Principal Sponsors</SectionTitle>
-                          </div>
-                          <div className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-3 sm:gap-x-4 md:gap-x-6 gap-y-1 sm:gap-y-1.5 items-stretch">
-                            {sponsorPairs.flatMap((pair, idx) => [
-                              <div 
-                                key={`male-${idx}-${pair.MalePrincipalSponsor || 'empty'}`}
-                                className="bg-white/40 hover:bg-white/60 rounded-lg transition-all duration-300 border border-[#B08981]/30 hover:border-[#B08981]/50 min-h-[2.5rem] sm:min-h-[3rem] flex items-center justify-center w-full"
-                              >
-                                {pair.MalePrincipalSponsor ? (
-                                  <NameItem name={pair.MalePrincipalSponsor} />
-                                ) : (
-                                  <div className="py-1 sm:py-1.5 md:py-2 min-h-[2.5rem] sm:min-h-[3rem] flex items-center justify-center w-full">
-                                    <p className="text-[#666956]/30 text-[10px] sm:text-xs">—</p>
-                                  </div>
-                                )}
-                              </div>,
-                              <div 
-                                key={`female-${idx}-${pair.FemalePrincipalSponsor || 'empty'}`}
-                                className="bg-white/40 hover:bg-white/60 rounded-lg transition-all duration-300 border border-[#B08981]/30 hover:border-[#B08981]/50 min-h-[2.5rem] sm:min-h-[3rem] flex items-center justify-center w-full"
-                              >
-                                {pair.FemalePrincipalSponsor ? (
-                                  <NameItem name={pair.FemalePrincipalSponsor} />
-                                ) : (
-                                  <div className="py-1 sm:py-1.5 md:py-2 min-h-[2.5rem] sm:min-h-[3rem] flex items-center justify-center w-full">
-                                    <p className="text-[#666956]/30 text-[10px] sm:text-xs">—</p>
-                                  </div>
-                                )}
-                              </div>
-                            ])}
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  )}
+      <div className="relative z-10 max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        {/* White card with elegant border */}
+        <div className="relative bg-white/80 backdrop-blur-sm border border-[#F1EDE2]/30 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden">
+          {/* Inner gold border */}
+          <div className="absolute inset-2 sm:inset-3 md:inset-4 border border-[#F1EDE2] rounded-lg sm:rounded-xl pointer-events-none" />
+          
+          {/* Card content */}
+          <div className="relative p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+            {/* Global font for Anton to match Entourage section */}
+            <style jsx global>{`
+              @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+              .anton-regular {
+                font-family: "Anton", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+              }
+            `}</style>
+            <div className="relative z-10 w-full">
+              {isLoading ? (
+                <div className="flex items-center justify-center py-24">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-12 h-12 border-4 border-[#F1EDE2]/30 border-t-[#F1EDE2] rounded-full animate-spin" />
+                    <span className="text-[#AFC8E6] font-serif text-lg">Loading sponsors...</span>
+                  </div>
                 </div>
-                
-                {/* Enhanced decorative sparkle effects */}
-                <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-2 h-2 sm:w-3 sm:h-3 bg-[#EFBFBB] rounded-full animate-ping opacity-80 shadow-lg" />
-                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B08981] rounded-full animate-pulse opacity-70 shadow-md" />
-                <div className="absolute top-1/2 left-1 sm:left-2 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-[#FFE5E4] rounded-full animate-pulse opacity-50" />
-              </div>
+              ) : error ? (
+                <div className="flex items-center justify-center py-24">
+                  <div className="text-center">
+                    <p className="text-red-500 font-serif text-lg mb-2">{error}</p>
+                    <button
+                      onClick={fetchSponsors}
+                      className="text-[#AFC8E6] hover:text-[#D8B0B0] font-serif underline"
+                    >
+                      Try again
+                    </button>
+                  </div>
+                </div>
+              ) : sponsorPairs.length === 0 ? (
+                <div className="text-center py-24">
+                  <p className="text-[#AFC8E6] font-serif text-lg">No sponsors yet</p>
+                </div>
+              ) : (
+                <div className="mb-5 sm:mb-7 md:mb-9 lg:mb-12">
+                  <div className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-2 sm:gap-x-3 md:gap-x-4 mb-2.5 sm:mb-3.5 md:mb-5">
+                    <SectionTitle align="right" className="pr-3 sm:pr-4 md:pr-6">Male Principal Sponsors</SectionTitle>
+                    <SectionTitle align="left" className="pl-3 sm:pl-4 md:pl-6">Female Principal Sponsors</SectionTitle>
+                  </div>
+                  <div className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-2 sm:gap-x-3 md:gap-x-4 gap-y-1.5 sm:gap-y-2 md:gap-y-3 items-stretch">
+                    {sponsorPairs.map((pair, idx) => (
+                      <div className="contents" key={`pair-${idx}`}>
+                        <div className="px-3 sm:px-4 md:px-6">
+                          {pair.MalePrincipalSponsor ? (
+                            <NameItem name={pair.MalePrincipalSponsor} align="right" />
+                          ) : (
+                            <div className="py-1 sm:py-1.5 md:py-2" />
+                          )}
+                        </div>
+                        <div className="px-3 sm:px-4 md:px-6">
+                          {pair.FemalePrincipalSponsor ? (
+                            <NameItem name={pair.FemalePrincipalSponsor} align="left" />
+                          ) : (
+                            <div className="py-1 sm:py-1.5 md:py-2" />
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

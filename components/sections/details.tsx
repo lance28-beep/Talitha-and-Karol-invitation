@@ -340,24 +340,6 @@ export function Details() {
                 </div>
               </div>
 
-              {/* Transportation */}
-              <div className="bg-gradient-to-br from-white to-[#EFBFBB]/20 rounded-xl p-3 sm:p-4 border-2 border-[#B08981]/30 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <div className="flex items-start gap-2 mb-2">
-                  <div className="bg-[#EFBFBB]/25 p-1.5 rounded-full mt-0.5">
-                    <Navigation className="w-3 h-3 text-[#666956]" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-xs sm:text-sm font-semibold text-[#666956] mb-1">Transportation</p>
-                    <p className="text-xs sm:text-sm text-[#666956] opacity-80 leading-relaxed mb-2">
-                      💡 Book transportation in advance for a stress-free day
-                    </p>
-                    <p className="text-xs sm:text-sm text-[#666956] opacity-80 leading-relaxed">
-                      Taxis, Grab, and private vehicles are welcome. Both venues are easily accessible.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
               
               </div>
             </div>

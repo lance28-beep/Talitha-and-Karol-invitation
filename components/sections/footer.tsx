@@ -108,6 +108,17 @@ export function Footer() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-16">
+        {/* Monogram */}
+        <div className="flex items-center justify-center mb-12">
+          <div className="relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#FFE5E4]/90 ring-2 ring-[#B08981]/50 shadow-lg shadow-[rgba(102,105,86,0.25)]">
+            <img
+              src="/decoration/monogram.png"
+              alt="Karol & Talitha Monogram"
+              className="w-5/6 h-5/6 object-contain rounded-full"
+            />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-transparent via-white/10 to-transparent pointer-events-none" />
+          </div>
+        </div>
         {/* Wedding date presentation */}
         <motion.div className="flex justify-center px-2 sm:px-4 mb-16" variants={fadeInUp}>
           <div className="max-w-2xl w-full">
@@ -172,7 +183,7 @@ export function Footer() {
                 <div className="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center border border-white/20">
                   <Heart className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-serif text-3xl md:text-4xl font-bold text-white">Talitha & Karol</h3>
+                <h3 className="font-serif text-3xl md:text-4xl font-bold text-white">Karol & Talitha</h3>
               </div>
               <div className="space-y-4">
                 <div className="flex items-center gap-3 font-lora text-white/95">
@@ -274,7 +285,7 @@ export function Footer() {
         <motion.div className="border-t border-white/20 pt-8" variants={fadeInUp}>
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
-              <p className="text-white/85 font-lora text-sm">© {year} Talitha & Karol. All rights reserved.</p>
+              <p className="text-white/85 font-lora text-sm">© {year} Karol & Talitha. All rights reserved.</p>
               <p className="text-white/90 font-lora text-sm mt-1">
                 Made with 💕 for our special day
               </p>

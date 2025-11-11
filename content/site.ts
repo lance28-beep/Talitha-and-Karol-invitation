@@ -46,19 +46,16 @@ export const siteConfig = {
     },
     note: "Please avoid jeans and casual attire."
   },
-  narrative: `It’s funny how life has its own way of bringing two souls together. \n
-We both lived in Baguio since 2011 — walking the same streets, sharing the same mountain air,
- even studying just a few kilometers apart. Yet, in all those years, we never once met. \n
+  narrative: `It’s funny how life has its own way of bringing two souls together.
+   We both studied in Baguio City from 2011 until graduation — 
+   walking the same streets and sharing the same mountain air. Yet, in all those years, we never once met. \n
 
-For a long time, our paths simply ran parallel — close, but never crossing.
- Then, in the third quarter of 2023, fate finally decided it was time.
-  A common friend introduced us (you know who you are 😉. Thank you!),
-   and what began as a simple conversation soon grew into something that felt both new and familiar
-    — as if our hearts had known each other all along. \n
+For a long time, our paths ran parallel — close, but never crossing. Then, in the third quarter of 2023, 
+fate finally decided it was time. A common friend introduced us, and what began as a simple conversation 
+soon grew into something that felt both new and familiar. \n
 
-By the first month of 2024, we officially began our journey together.
- Since then, every day has been filled with laughter, warmth, and the
-  quiet certainty that we’ve found home in each other.
+By the first month of 2024, we officially began our journey together. 
+Since then, every day has been filled with warmth, and the quiet certainty that we’ve found home in each other.
 \n
 Looking back, it’s amazing how everything happened just as it should — not too early, not too late, but at the perfect time. Our story reminds us that love doesn’t rush; it waits for the right moment, and when it arrives, everything simply falls into place.
 \n

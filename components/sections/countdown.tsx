@@ -186,6 +186,14 @@ export function Countdown() {
         </h2>
         
         <div className="flex items-center justify-center gap-4 mb-8">
+          <div className="relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#FFE5E4]/90 ring-2 ring-[#B08981]/50 shadow-lg shadow-[rgba(102,105,86,0.25)]">
+            <img
+              src="/decoration/monogram.png"
+              alt="Karol & Talitha Monogram"
+              className="w-5/6 h-5/6 object-contain rounded-full"
+            />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-transparent via-white/10 to-transparent pointer-events-none" />
+          </div>
         </div>
         
         <p className="text-lg md:text-xl text-[#FFE5E4] font-sans font-light max-w-2xl mx-auto px-4 leading-relaxed">

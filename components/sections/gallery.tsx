@@ -6,9 +6,9 @@ import { Section } from "@/components/section"
 // Removed circular gallery in favor of a responsive masonry layout
 
 const galleryItems = [
-  { image: "/desktop-background/NLK_4093-min.jpg", text: " " },   
-  { image: "/desktop-background/NLK_3275-min.jpg", text: " " },
-  { image: "/desktop-background/DSCF2499-min.jpg", text: " " },
+  { image: "/desktop-background/NLK_3429-min.jpg", text: " " },   
+  { image: "/desktop-background/NLK_4183-min.jpg", text: " " },
+  { image: "/desktop-background/NLK_3217-min.jpg", text: " " },
 
 ]
 

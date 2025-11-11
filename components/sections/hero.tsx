@@ -173,11 +173,11 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#666956] via-[#666956]/40 to-transparent z-0" />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-12 flex flex-col items-center justify-end min-h-screen pb-16 sm:pb-24 md:pb-32 lg:pb-48">
-        <div className="max-w-2xl text-center space-y-6 sm:space-y-8">
-          <div className="space-y-3 sm:space-y-4">
+      <div className="relative z-10 w-full flex flex-col items-center justify-end min-h-screen pb-16 sm:pb-24 md:pb-32 lg:pb-48 px-4 sm:px-6 md:px-12">
+        <div className="w-full max-w-4xl md:max-w-5xl lg:max-w-6xl text-center space-y-6 sm:space-y-8 flex flex-col items-center">
+          <div className="space-y-3 sm:space-y-4 w-full flex flex-col items-center">
             <h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-wide drop-shadow-2xl whitespace-nowrap"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-wide drop-shadow-2xl whitespace-nowrap text-center w-full md:text-center"
               style={{
                 color: '#FFE5E4',
                 textShadow: "0 0 20px rgba(255, 229, 228, 0.7), 0 0 36px rgba(239, 191, 187, 0.35), 0 8px 24px rgba(102, 105, 86, 0.8)",
@@ -185,7 +185,7 @@ export function Hero() {
                 fontFamily: "var(--font-serif)",
               }}
             >
-              {siteConfig.couple.brideNickname} & {siteConfig.couple.groomNickname}
+              {siteConfig.couple.groomNickname} & {siteConfig.couple.brideNickname}
             </h1>
             <div className="h-1 w-16 sm:w-20 md:w-24 mx-auto bg-gradient-to-r from-transparent via-[#EFBFBB] to-transparent" />
           </div>

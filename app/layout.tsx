@@ -9,17 +9,17 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const greatVibes = Great_Vibes({ subsets: ["latin"], weight: "400", variable: "--font-serif" })
 
 export const metadata: Metadata = {
-  title: "Talitha & Karol - Wedding Invitation",
+  title: "Karol & Talitha - Wedding Invitation",
   description:
-    "You're invited to the wedding of Talitha & Karol! Join us on February 14, 2026 in Tarlac, Tarlac. RSVP, read our love story, view our gallery, and leave a message for the couple.",
+    "You're invited to the wedding of Karol & Talitha! Join us on February 14, 2026 in Tarlac, Tarlac. RSVP, read our love story, view our gallery, and leave a message for the couple.",
   keywords:
     "Talitha Karol wedding, Filipino wedding, RSVP, wedding gallery, wedding message wall, wedding invitation, 2026 weddings, love story, guestbook, wedding registry, wedding details, wedding venues Tarlac, #TalithaAndKarolWedding",
   authors: [
     { name: "Talitha" },
     { name: "Karol" },
   ],
-  creator: "Talitha & Karol",
-  publisher: "Talitha & Karol",
+  creator: "Karol & Talitha",
+  publisher: "Karol & Talitha",
   formatDetection: {
     email: false,
     address: false,
@@ -49,11 +49,11 @@ export const metadata: Metadata = {
   },
   manifest: "/favicon_io/site.webmanifest",
   openGraph: {
-    title: "Talitha & Karol Wedding | February 14, 2026",
+    title: "Karol & Talitha Wedding | February 14, 2026",
     description:
-      "Celebrate the union of Talitha & Karol on February 14, 2026 in Tarlac, Tarlac. Discover our love story, RSVP, view the gallery, and leave your wishes!",
+      "Celebrate the union of Karol & Talitha on February 14, 2026 in Tarlac, Tarlac. Discover our love story, RSVP, view the gallery, and leave your wishes!",
     url: "https://Talitha-and-Karol-invitation.vercel.app/",
-    siteName: "Talitha & Karol Wedding ",
+    siteName: "Karol & Talitha Wedding ",
     locale: "en_PH",
     type: "website",
     images: [
@@ -61,15 +61,15 @@ export const metadata: Metadata = {
         url: "https://Talitha-and-Karol-invitation.vercel.app/desktop-background/NLK_3656-min.jpg",
         width: 1200,
         height: 630,
-        alt: "Talitha & Karol Wedding Invitation - February 14, 2026",
+        alt: "Karol & Talitha Wedding Invitation - February 14, 2026",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Talitha & Karol Wedding Invitation",
+    title: "Karol & Talitha Wedding Invitation",
     description:
-      "You're invited to the wedding of Talitha & Karol! February 14, 2026. RSVP, view our gallery, and leave a message! #TalithaAndKarolWedding",
+      "You're invited to the wedding of Karol & Talitha! February 14, 2026. RSVP, view our gallery, and leave a message! #TalithaAndKarolWedding",
     images: ["https://Talitha-and-Karol-invitation.vercel.app/desktop-background/NLK_3656-min.jpg"],
     creator: "@talithakarol",
   },
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     "application/ld+json": JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Event",
-      name: "Talitha & Karol Wedding",
+      name: "Karol & Talitha Wedding",
       startDate: "2026-02-14T14:00:00+08:00",
       endDate: "2026-02-14T22:00:00+08:00",
       eventStatus: "https://schema.org/EventScheduled",
@@ -109,10 +109,10 @@ export const metadata: Metadata = {
       ],
       image: ["https://Talitha-and-Karol-invitation.vercel.app/desktop-background/NLK_3656-min.jpg"],
       description:
-        "You're invited to the wedding of Talitha & Karol! Join us on February 14, 2026 in Tarlac, Tarlac. RSVP, read our love story, view our gallery, and leave a message for the couple.",
+        "You're invited to the wedding of Karol & Talitha! Join us on February 14, 2026 in Tarlac, Tarlac. RSVP, read our love story, view our gallery, and leave a message for the couple.",
       organizer: {
         "@type": "Person",
-        name: "Talitha & Karol",
+        name: "Karol & Talitha",
       },
       offers: {
         "@type": "Offer",
