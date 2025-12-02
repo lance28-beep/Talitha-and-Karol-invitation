@@ -16,12 +16,12 @@ const ROLE_CATEGORY_ORDER = [
   "Parents of the Groom",
   "Parents of the Bride",
   "Best Man",
-  "Maid/Matron of Honor",
+  "Maid of Honor",
+  "Bridesmaids",
+  "Groomsmen",
   "Candle Sponsors",
   "Veil Sponsors",
   "Cord Sponsors",
-  "Bridesmaids",
-  "Groomsmen",
   "Flower Attendants",
   "Ring/Coin Bearers",
 ]
@@ -70,7 +70,12 @@ export function Entourage() {
     const grouped: Record<string, EntourageMember[]> = {}
     
     entourage.forEach((member) => {
-      const category = member.RoleCategory || "Other"
+      // Normalize categories from the data source so display groups line up correctly
+      let category = member.RoleCategory || "Other"
+      if (category === "Maid/Matron of Honor") {
+        category = "Maid of Honor"
+      }
+
       if (!grouped[category]) {
         grouped[category] = []
       }
@@ -93,7 +98,7 @@ export function Entourage() {
     const textAlign =
       align === "right" ? "text-right" : align === "left" ? "text-left" : "text-center"
     return (
-      <h3 className={`anton-regular text-base sm:text-lg md:text-xl lg:text-2xl font-bold uppercase text-[#BB8A3D] mb-2 sm:mb-3 md:mb-4 tracking-[0.15em] ${textAlign} ${className}`}>
+      <h3 className={`anton-regular text-sm sm:text-lg md:text-xl lg:text-2xl font-bold uppercase text-[#BB8A3D] mb-1 sm:mb-2.5 md:mb-3 tracking-[0.15em] ${textAlign} ${className}`}>
         {children}
       </h3>
     )
@@ -114,10 +119,11 @@ export function Entourage() {
     const textAlign =
       align === "right" ? "text-right" : align === "left" ? "text-left" : "text-center"
     return (
-      <div className={`flex flex-col ${containerAlign} justify-center py-1 sm:py-1.5 md:py-2 leading-relaxed`}>
-        <p className={`text-slate-700 text-[13px] sm:text-sm md:text-base font-medium ${textAlign}`}>{member.Name}</p>
+      <div className={`flex flex-col ${containerAlign} justify-center py-0 sm:py-0.5 md:py-1 leading-relaxed`}>
+        {/* Slightly larger name font for readability on small screens */}
+        <p className={`text-slate-700 text-[11px] sm:text-sm md:text-base font-medium ${textAlign}`}>{member.Name}</p>
         {showRole && member.RoleTitle && (
-          <p className={`text-slate-500 text-[10px] sm:text-[11px] md:text-xs font-normal mt-0.5 leading-snug ${textAlign}`}>
+          <p className={`text-slate-500 text-[9px] sm:text-[11px] md:text-xs font-normal mt-0.5 leading-snug ${textAlign}`}>
             {member.RoleTitle}
           </p>
         )}
@@ -141,9 +147,10 @@ export function Entourage() {
   }) => {
     if (singleTitle) {
       return (
-        <div className="mb-5 sm:mb-7 md:mb-9 lg:mb-12">
+        <div className="mb-4 sm:mb-5 md:mb-6 lg:mb-8">
           <SectionTitle>{singleTitle}</SectionTitle>
-          <div className={`grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-2 sm:gap-x-3 md:gap-x-4 gap-y-1.5 sm:gap-y-2 md:gap-y-3 ${centerContent ? 'max-w-2xl mx-auto' : ''}`}>
+          {/* Tighter center gap between columns on mobile */}
+          <div className={`grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-0.5 sm:gap-x-3 md:gap-x-4 gap-y-0.5 sm:gap-y-1.5 md:gap-y-2.5 ${centerContent ? 'max-w-2xl mx-auto' : ''}`}>
             {children}
           </div>
         </div>
@@ -151,8 +158,9 @@ export function Entourage() {
     }
 
     return (
-      <div className="mb-5 sm:mb-7 md:mb-9 lg:mb-12">
-        <div className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-2 sm:gap-x-3 md:gap-x-4 mb-2.5 sm:mb-3.5 md:mb-5">
+      <div className="mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+        {/* Tighter column label gap on mobile */}
+        <div className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-0.5 sm:gap-x-3 md:gap-x-4 mb-1 sm:mb-2.5 md:mb-4">
           {leftTitle && (
             <SectionTitle align="right" className="pr-3 sm:pr-4 md:pr-6">{leftTitle}</SectionTitle>
           )}
@@ -160,7 +168,8 @@ export function Entourage() {
             <SectionTitle align="left" className="pl-3 sm:pl-4 md:pl-6">{rightTitle}</SectionTitle>
           )}
         </div>
-        <div className={`grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-2 sm:gap-x-3 md:gap-x-4 gap-y-1.5 sm:gap-y-2 md:gap-y-3 ${centerContent ? 'max-w-2xl mx-auto' : ''}`}>
+        {/* Tighter center gap between content columns on mobile */}
+        <div className={`grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-0.5 sm:gap-x-3 md:gap-x-4 gap-y-0.5 sm:gap-y-1.5 md:gap-y-2.5 ${centerContent ? 'max-w-2xl mx-auto' : ''}`}>
           {children}
         </div>
       </div>
@@ -170,7 +179,7 @@ export function Entourage() {
   return (
     <section
       id="entourage"
-      className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 overflow-hidden bg-gradient-to-b from-[#FFE5E4]/90 via-[#FFD6D4]/85 to-[#FFE5E4]/90"
+      className="relative min-h-screen py-8 sm:py-16 md:py-20 lg:py-24 xl:py-28 overflow-hidden bg-gradient-to-b from-[#FFE5E4]/90 via-[#FFD6D4]/85 to-[#FFE5E4]/90"
     >
       {/* Floral watercolor background */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -226,23 +235,23 @@ export function Entourage() {
       </div>
 
       {/* Section Header */}
-      <div className="relative z-10 text-center mb-8 sm:mb-10 md:mb-12 px-4">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-[#BB8A3D] mb-3 sm:mb-4 text-balance">
+      <div className="relative z-10 text-center mb-6 sm:mb-10 md:mb-12 px-4">
+        <h2 className="text-xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-[#BB8A3D] mb-2 sm:mb-4 text-balance">
           Wedding Entourage
         </h2>
-        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif font-semibold text-[#BB8A3D] mb-3 sm:mb-4">
+        <h3 className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-serif font-semibold text-[#BB8A3D] mb-2 sm:mb-4">
           Organizational Chart
         </h3>
       </div>
 
       {/* Central Card Container */}
-      <div className="relative z-10 max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="relative z-10 max-w-5xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
         {/* White card with elegant border */}
         <div className="relative bg-white/80 backdrop-blur-sm border border-[#F1EDE2]/30 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden">
           {/* Inner gold border */}
           <div className="absolute inset-2 sm:inset-3 md:inset-4 border border-[#F1EDE2] rounded-lg sm:rounded-xl pointer-events-none" />
           {/* Card content */}
-          <div className="relative p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+          <div className="relative p-3 sm:p-6 md:p-8 lg:p-10 xl:p-12">
             {/* Global font import for Anton and category label class */}
             <style jsx global>{`
               @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
@@ -289,9 +298,9 @@ export function Entourage() {
                   const bride = members.find(m => m.RoleTitle?.toLowerCase().includes('bride'))
                   
                   return (
-                    <div key={category}>
+                    <div key={category} className="mt-2 sm:mt-3 md:mt-4">
                       {categoryIndex > 0 && (
-                        <div className="flex justify-center py-3 sm:py-4 mb-5 sm:mb-6 md:mb-8">
+                        <div className="flex justify-center py-1 sm:py-2 mb-2.5 sm:mb-4 md:mb-5">
                           <div className="h-px w-32 sm:w-48 bg-gradient-to-r from-transparent via-[#F1EDE2]/40 to-transparent"></div>
                         </div>
                       )}
@@ -331,7 +340,7 @@ export function Entourage() {
                     return (
                       <div key="Parents">
                         {categoryIndex > 0 && (
-                          <div className="flex justify-center py-3 sm:py-4 mb-5 sm:mb-6 md:mb-8">
+                          <div className="flex justify-center py-1 sm:py-2 mb-2.5 sm:mb-4 md:mb-5">
                             <div className="h-px w-32 sm:w-48 bg-gradient-to-r from-transparent via-[#F1EDE2]/40 to-transparent"></div>
                           </div>
                         )}
@@ -366,9 +375,9 @@ export function Entourage() {
                 }
 
                 // Special handling for Maid/Matron of Honor and Best Man - combine into single two-column layout
-                if (category === "Maid/Matron of Honor" || category === "Best Man") {
+                if (category === "Maid of Honor" || category === "Best Man") {
                   // Get both honor attendant groups
-                  const maidOfHonor = grouped["Maid/Matron of Honor"] || []
+                  const maidOfHonor = grouped["Maid of Honor"] || []
                   const bestMan = grouped["Best Man"] || []
                   
                   // Only render once (when processing "Best Man")
@@ -376,11 +385,11 @@ export function Entourage() {
                     return (
                       <div key="HonorAttendants">
                         {categoryIndex > 0 && (
-                          <div className="flex justify-center py-3 sm:py-4 mb-5 sm:mb-6 md:mb-8">
+                          <div className="flex justify-center py-1 sm:py-2 mb-2.5 sm:mb-4 md:mb-5">
                             <div className="h-px w-32 sm:w-48 bg-gradient-to-r from-transparent via-[#F1EDE2]/40 to-transparent"></div>
                           </div>
                         )}
-                        <TwoColumnLayout leftTitle="Best Man" rightTitle="Maid/Matron of Honor">
+                        <TwoColumnLayout leftTitle="Best Man" rightTitle="Maid of Honor">
                           {(() => {
                             const maxLen = Math.max(bestMan.length, maidOfHonor.length)
                             const rows = []
@@ -419,23 +428,24 @@ export function Entourage() {
                     return (
                       <div key="BridalParty">
                         {categoryIndex > 0 && (
-                          <div className="flex justify-center py-3 sm:py-4 mb-5 sm:mb-6 md:mb-8">
+                          <div className="flex justify-center py-2 sm:py-3 mb-4 sm:mb-5 md:mb-6">
                             <div className="h-px w-32 sm:w-48 bg-gradient-to-r from-transparent via-[#F1EDE2]/40 to-transparent"></div>
                           </div>
                         )}
-                        <TwoColumnLayout leftTitle="Bridesmaids" rightTitle="Groomsmen">
+                        {/* Groomsmen on the left, Bridesmaids on the right */}
+                        <TwoColumnLayout leftTitle="Groomsmen" rightTitle="Bridesmaids">
                           {(() => {
                             const maxLen = Math.max(bridesmaids.length, groomsmen.length)
                             const rows = []
                             for (let i = 0; i < maxLen; i++) {
-                              const left = bridesmaids[i]
-                              const right = groomsmen[i]
+                              const left = groomsmen[i]
+                              const right = bridesmaids[i]
                               rows.push(
                                 <React.Fragment key={`bridal-row-${i}`}>
-                                  <div key={`bridesmaid-cell-${i}`} className="px-3 sm:px-4 md:px-6">
+                                  <div key={`groomsman-cell-${i}`} className="px-3 sm:px-4 md:px-6">
                                     {left ? <NameItem member={left} align="right" /> : <div className="py-1 sm:py-1.5 md:py-2" />}
                                   </div>
-                                  <div key={`groomsman-cell-${i}`} className="px-3 sm:px-4 md:px-6">
+                                  <div key={`bridesmaid-cell-${i}`} className="px-3 sm:px-4 md:px-6">
                                     {right ? <NameItem member={right} align="left" /> : <div className="py-1 sm:py-1.5 md:py-2" />}
                                   </div>
                                 </React.Fragment>
@@ -462,7 +472,7 @@ export function Entourage() {
                     return (
                       <div key="Sponsors">
                         {categoryIndex > 0 && (
-                          <div className="flex justify-center py-3 sm:py-4 mb-5 sm:mb-6 md:mb-8">
+                          <div className="flex justify-center py-1.5 sm:py-2.5 mb-3 sm:mb-4 md:mb-5">
                             <div className="h-px w-32 sm:w-48 bg-gradient-to-r from-transparent via-[#F1EDE2]/40 to-transparent"></div>
                           </div>
                         )}
@@ -498,7 +508,7 @@ export function Entourage() {
                 return (
                   <div key={category}>
                     {categoryIndex > 0 && (
-                      <div className="flex justify-center py-3 sm:py-4 mb-5 sm:mb-6 md:mb-8">
+                      <div className="flex justify-center py-1 sm:py-2 mb-2.5 sm:mb-4 md:mb-5">
                         <div className="h-px w-32 sm:w-48 bg-gradient-to-r from-transparent via-[#BB8A3D]/60 to-transparent"></div>
                       </div>
                     )}
@@ -506,7 +516,7 @@ export function Entourage() {
                       {(() => {
                         const SINGLE_COLUMN_SECTIONS = new Set([
                           "Best Man",
-                          "Maid/Matron of Honor",
+                          "Maid of Honor",
                           "Ring Bearer",
                           "Coin Bearer",
                           "Bible Bearer",
@@ -570,7 +580,7 @@ export function Entourage() {
                 const members = grouped[category]
                 return (
                   <div key={category}>
-                    <div className="flex justify-center py-3 sm:py-4 mb-5 sm:mb-6 md:mb-8">
+                    <div className="flex justify-center py-1 sm:py-2 mb-2.5 sm:mb-4 md:mb-5">
                       <div className="h-px w-32 sm:w-48 bg-gradient-to-r from-transparent via-[#F1EDE2]/40 to-transparent"></div>
                     </div>
                     <TwoColumnLayout singleTitle={category} centerContent={true}>

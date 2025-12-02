@@ -75,7 +75,7 @@ export function Registry() {
                 <p className="leading-relaxed">
                   If you feel inclined to give a monetary gift, we would appreciate receiving it in person so we may share our heartfelt thanks face-to-face.
                 </p>
-                <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-[#B08981] pt-2 sm:pt-4">
+                <p className="tangerine-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#B08981] pt-2 sm:pt-4">
                   We look forward to celebrating with you soon. ✨
                 </p>
               </div>

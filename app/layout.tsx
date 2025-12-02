@@ -1,12 +1,13 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Great_Vibes, Inter } from "next/font/google"
+import { Great_Vibes, Inter, Tangerine } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Navbar } from "@/components/navbar"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const greatVibes = Great_Vibes({ subsets: ["latin"], weight: "400", variable: "--font-serif" })
+const tangerine = Tangerine({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-tangerine" })
 
 export const metadata: Metadata = {
   title: "Karol & Talitha - Wedding Invitation",
@@ -136,11 +137,12 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#525E2C" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" as="image" href="/mobile-background/DSCF2614-min.jpg" media="(max-width: 767px)" />
         <link rel="preload" as="image" href="/desktop-background/DSCF2444-min.jpg" media="(min-width: 768px)" />
       </head>
-      <body className={`${inter.variable} ${greatVibes.variable} font-inter antialiased text-foreground`}>
+      <body className={`${inter.variable} ${greatVibes.variable} ${tangerine.variable} font-inter antialiased text-foreground`}>
         <Navbar />
         {children}
         <Analytics />

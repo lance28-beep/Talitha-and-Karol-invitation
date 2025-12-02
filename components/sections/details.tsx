@@ -276,29 +276,29 @@ export function Details() {
               <span className="text-[11px] sm:text-sm font-semibold text-[#666956] bg-[#B08981]/30 px-2.5 py-1.5 rounded-full">{typeof siteConfig.dressCode === 'object' ? siteConfig.dressCode.theme : siteConfig.dressCode}</span>
             </div>
 
-            {/* Color Palette */}
-            {typeof siteConfig.dressCode === 'object' && siteConfig.dressCode.colors && (
-              <div className="mb-4">
-                <p className="text-xs font-semibold text-[#666956] mb-2">Color Palette</p>
-                <div className="flex gap-2 flex-wrap">
-                  {siteConfig.dressCode.colors.map((color, index) => (
-                    <div
-                      key={index}
-                      className="w-7 h-7 sm:w-10 sm:h-10 rounded-full shadow-md border-2 border-white ring-2 ring-[#B08981]/25"
-                      style={{ backgroundColor: color }}
-                      title={color}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* Principal Sponsors */}
             {typeof siteConfig.dressCode === 'object' && siteConfig.dressCode.sponsors && (
               <div className="mb-4 bg-white/60 rounded-lg p-3 border border-[#B08981]/30">
                 <p className="text-xs font-semibold text-[#666956] mb-2">Principal Sponsors</p>
-                <p className="text-xs text-[#666956] opacity-80 mb-1">Dress Code: Any shade matching the palette</p>
-
+                <p className="text-xs text-[#666956] opacity-80 mb-2">
+                  {typeof siteConfig.dressCode.sponsors === 'string' 
+                    ? siteConfig.dressCode.sponsors 
+                    : `Ladies: ${siteConfig.dressCode.sponsors.ladies || ''}\nGentlemen: ${siteConfig.dressCode.sponsors.gentlemen || ''}`}
+                </p>
+                {/* Beige Color Palette for Principal Sponsors */}
+                <div className="mt-2 pt-2 border-t border-[#B08981]/20">
+                  <p className="text-xs font-semibold text-[#666956] mb-2">Color Palette</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {["#F5F5DC", "#E6D3A3", "#D2B48C", "#D4B896", "#E8DDD4"].map((color, index) => (
+                      <div
+                        key={index}
+                        className="w-6 h-6 sm:w-8 sm:h-8 rounded-full shadow-md border-2 border-white ring-1 ring-[#B08981]/25"
+                        style={{ backgroundColor: color }}
+                        title={color}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
 
@@ -306,7 +306,27 @@ export function Details() {
             {typeof siteConfig.dressCode === 'object' && siteConfig.dressCode.guests && (
               <div className="mb-4 bg-white/60 rounded-lg p-3 border border-[#B08981]/30">
                 <p className="text-xs font-semibold text-[#666956] mb-2">Guests</p>
-                <p className="text-xs text-[#666956] opacity-80 mb-1">Dress Code: Semi-formal (avoid casual attire)</p>
+                <p className="text-xs text-[#666956] opacity-80 mb-2">
+                  {typeof siteConfig.dressCode.guests === 'string' 
+                    ? siteConfig.dressCode.guests 
+                    : `Ladies: ${siteConfig.dressCode.guests.ladies || ''}\nGentlemen: ${siteConfig.dressCode.guests.gentlemen || ''}`}
+                </p>
+                {/* Color Palette for Guests */}
+                {typeof siteConfig.dressCode === 'object' && siteConfig.dressCode.colors && (
+                  <div className="mt-2 pt-2 border-t border-[#B08981]/20 mb-2">
+                    <p className="text-xs font-semibold text-[#666956] mb-2">Color Palette</p>
+                    <div className="flex gap-2 flex-wrap">
+                      {siteConfig.dressCode.colors.map((color, index) => (
+                        <div
+                          key={index}
+                          className="w-6 h-6 sm:w-8 sm:h-8 rounded-full shadow-md border-2 border-white ring-1 ring-[#B08981]/25"
+                          style={{ backgroundColor: color }}
+                          title={color}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <p className="text-xs font-medium text-[#666956] opacity-90 bg-[#EFBFBB]/25 px-2 py-1 rounded">⚠️ {siteConfig.dressCode.note}</p>
               </div>
             )}

@@ -220,12 +220,12 @@ export function SnapShare() {
 
         <motion.div className="text-center mt-8" variants={fadeInUp}>
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg border border-[#B08981]/25 max-w-3xl mx-auto">
-            <p className="font-lora text-[#666956] text-base sm:text-lg leading-relaxed mb-4">
+            <p className="tangerine-regular text-[#666956] text-xl sm:text-2xl md:text-3xl leading-relaxed mb-4">
               We are so excited to celebrate our love with you! See you on our special day!
             </p>
             <div className="flex items-center justify-center gap-2">
               <div className="text-center">
-                <span className="block font-playfair text-[#666956] font-bold text-lg sm:text-xl">– Talitha & Karol –</span>
+                <span className="block tangerine-bold text-[#666956] text-2xl sm:text-3xl md:text-4xl">– Talitha & Karol –</span>
               </div>
             </div>
           </div>

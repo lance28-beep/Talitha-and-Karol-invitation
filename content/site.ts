@@ -36,15 +36,9 @@ export const siteConfig = {
   dressCode: {
     theme: "Semi-Formal Attire",
     colors: ["#666956", "#8D8E7C", "#B08981", "#EFBFBB"],
-    sponsors: {
-      ladies: "White gown / long dress ",
-      gentlemen: "Black suit and tie"
-    },
-    guests: {
-      ladies: "Long or cocktail dress",
-      gentlemen: "Long sleeve, polo, pants or suit"
-    },
-    note: "Please avoid jeans and casual attire."
+    sponsors: "Requested to wear formal attire in the shade of beige",
+    guests: "Encouraged to come in formal/semi-formal attire in any shade matching the palette",
+    note: "Please avoid jeans and other casual wear."
   },
   narrative: `It’s funny how life has its own way of bringing two souls together.
    We both studied in Baguio City from 2011 until graduation — 

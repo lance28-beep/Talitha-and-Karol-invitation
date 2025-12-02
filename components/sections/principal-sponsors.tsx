@@ -22,7 +22,7 @@ export function PrincipalSponsors() {
     const textAlign =
       align === "right" ? "text-right" : align === "left" ? "text-left" : "text-center"
     return (
-      <h3 className={`anton-regular text-base sm:text-lg md:text-xl lg:text-2xl font-bold uppercase text-[#BB8A3D] mb-2 sm:mb-3 md:mb-4 tracking-[0.15em] ${textAlign} ${className}`}>
+      <h3 className={`anton-regular text-sm sm:text-lg md:text-xl lg:text-2xl font-bold uppercase text-[#BB8A3D] mb-1 sm:mb-2.5 md:mb-3 tracking-[0.15em] ${textAlign} ${className}`}>
         {children}
       </h3>
     )
@@ -35,8 +35,8 @@ export function PrincipalSponsors() {
     const textAlign =
       align === "right" ? "text-right" : align === "left" ? "text-left" : "text-center"
     return (
-      <div className={`flex flex-col ${containerAlign} justify-center py-1 sm:py-1.5 md:py-2 w-full`}>
-        <p className={`text-slate-700 text-[13px] sm:text-sm md:text-base font-medium leading-snug break-words ${textAlign}`}>{name}</p>
+      <div className={`flex flex-col ${containerAlign} justify-center py-0 sm:py-0.5 md:py-1 w-full`}>
+        <p className={`text-slate-700 text-[11px] sm:text-sm md:text-base font-medium leading-snug break-words ${textAlign}`}>{name}</p>
       </div>
     )
   }
@@ -165,12 +165,14 @@ export function PrincipalSponsors() {
                   <p className="text-[#AFC8E6] font-serif text-lg">No sponsors yet</p>
                 </div>
               ) : (
-                <div className="mb-5 sm:mb-7 md:mb-9 lg:mb-12">
-                  <div className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-2 sm:gap-x-3 md:gap-x-4 mb-2.5 sm:mb-3.5 md:mb-5">
+                <div className="mb-4 sm:mb-5 md:mb-7 lg:mb-10">
+                  {/* Match entourage two-column header gaps */}
+                  <div className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-0.5 sm:gap-x-3 md:gap-x-4 mb-1 sm:mb-3 md:mb-4">
                     <SectionTitle align="right" className="pr-3 sm:pr-4 md:pr-6">Male Principal Sponsors</SectionTitle>
                     <SectionTitle align="left" className="pl-3 sm:pl-4 md:pl-6">Female Principal Sponsors</SectionTitle>
                   </div>
-                  <div className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-2 sm:gap-x-3 md:gap-x-4 gap-y-1.5 sm:gap-y-2 md:gap-y-3 items-stretch">
+                  {/* Match entourage two-column content gaps */}
+                  <div className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-x-0.5 sm:gap-x-3 md:gap-x-4 gap-y-0.5 sm:gap-y-1.5 md:gap-y-2.5 items-stretch">
                     {sponsorPairs.map((pair, idx) => (
                       <div className="contents" key={`pair-${idx}`}>
                         <div className="px-3 sm:px-4 md:px-6">
