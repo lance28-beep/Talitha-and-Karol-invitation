@@ -53,7 +53,7 @@ const faqItems: FAQItem[] = [
   {
     question: "What if I have dietary restrictions or allergies?",
     answer:
-      "Please mention any dietary restrictions, allergies, or special meal requirements in the message field when you submit your RSVP.",
+      "Please mention any dietary restrictions, allergies, or special meal requirements in the message field when you submit your RSVP, or kindly contact the couples for any food restrictions. [DETAILS_LINK]For more information[/DETAILS_LINK], see the details section.",
   },
   {
     question: "Can I take photos during the ceremony?",
@@ -285,6 +285,21 @@ export function FAQ() {
                                         {item.answer.match(/\[RSVP_LINK\](.*?)\[\/RSVP_LINK\]/)?.[1]}
                                       </a>
                                       {item.answer.split("[/RSVP_LINK]")[1]}
+                                    </>
+                                  ) : item.answer.includes("[DETAILS_LINK]") ? (
+                                    <>
+                                      {item.answer.split("[DETAILS_LINK]")[0]}
+                                      <a 
+                                        href="#details" 
+                                        className="text-[#B08981] underline font-semibold hover:text-[#EFBFBB] transition-colors"
+                                        onClick={(e) => {
+                                          e.preventDefault()
+                                          document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' })
+                                        }}
+                                      >
+                                        {item.answer.match(/\[DETAILS_LINK\](.*?)\[\/DETAILS_LINK\]/)?.[1]}
+                                      </a>
+                                      {item.answer.split("[/DETAILS_LINK]")[1]}
                                     </>
                                   ) : (
                                     item.answer
