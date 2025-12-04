@@ -15,7 +15,7 @@ export const siteConfig = {
   },
   details: {
     rsvp: {
-      deadline: "February 1, 2026",
+      deadline: "January 9, 2025",
     },
   },
   ceremony: {
@@ -36,9 +36,9 @@ export const siteConfig = {
   dressCode: {
     theme: "Semi-Formal Attire",
     colors: ["#666956", "#8D8E7C", "#B08981", "#EFBFBB"],
-    sponsors: "Requested to wear formal attire in the shade of beige",
-    guests: "Encouraged to come in formal/semi-formal attire in any shade matching the palette",
-    note: "Please avoid jeans and other casual wear."
+    sponsors: "Principal Sponsors are requested to wear formal attire in the shades of beige.",
+    guests: "Guests may come in formal or semi-formal attire in any color matching the event palette.",
+    note: "Kindly avoid jeans and other casual wear.",
   },
   narrative: `It’s funny how life has its own way of bringing two souls together.
    We both studied in Baguio City from 2011 until graduation — 

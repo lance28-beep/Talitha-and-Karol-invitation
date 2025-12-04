@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description:
     "You're invited to the wedding of Karol & Talitha! Join us on February 14, 2026 in Tarlac, Tarlac. RSVP, read our love story, view our gallery, and leave a message for the couple.",
   keywords:
-    "Talitha Karol wedding, Filipino wedding, RSVP, wedding gallery, wedding message wall, wedding invitation, 2026 weddings, love story, guestbook, wedding registry, wedding details, wedding venues Tarlac, #TalithaAndKarolWedding",
+    "Talitha Karol wedding, Filipino wedding, RSVP, wedding gallery, wedding message wall, wedding invitation, 2026 weddings, love story, guestbook, wedding registry, wedding details, wedding venues Tarlac, #MayTALInasiKAROL",
   authors: [
     { name: "Talitha" },
     { name: "Karol" },
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Karol & Talitha Wedding Invitation",
     description:
-      "You're invited to the wedding of Karol & Talitha! February 14, 2026. RSVP, view our gallery, and leave a message! #TalithaAndKarolWedding",
+      "You're invited to the wedding of Karol & Talitha! February 14, 2026. RSVP, view our gallery, and leave a message! #MayTALInasiKAROL",
     images: ["https://Talitha-and-Karol-invitation.vercel.app/desktop-background/NLK_3656-min.jpg"],
     creator: "@talithakarol",
   },
@@ -122,7 +122,7 @@ export const metadata: Metadata = {
         price: "0",
         priceCurrency: "PHP",
       },
-      eventHashtag: "#TalithaAndKarolWedding",
+      eventHashtag: "#MayTALInasiKAROL",
     }),
   },
 }

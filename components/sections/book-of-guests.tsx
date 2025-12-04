@@ -11,10 +11,14 @@ interface Guest {
 }
 
 export function BookOfGuests() {
-  const [guests, setGuests] = useState<Guest[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [totalGuests, setTotalGuests] = useState(0)
+  const [stats, setStats] = useState({
+    total: 0,
+    attending: 0,
+    notAttending: 0,
+    pending: 0,
+  })
 
   const getInitials = (name: string) => {
     if (!name) return "?"
@@ -39,11 +43,18 @@ export function BookOfGuests() {
 
       const data: Guest[] = await response.json()
 
-      // Filter only attending guests
-      const attendingGuests = data.filter((guest) => guest.RSVP === "Yes")
-      
-      setGuests(attendingGuests)
-      setTotalGuests(attendingGuests.length)
+      const attending = data.filter((guest) => guest.RSVP === "Yes").length
+      const notAttending = data.filter((guest) => guest.RSVP === "No").length
+      const pending = data.filter(
+        (guest) => !guest.RSVP || guest.RSVP.trim() === ""
+      ).length
+
+      setStats({
+        total: data.length,
+        attending,
+        notAttending,
+        pending,
+      })
     } catch (error: any) {
       console.error("Failed to load guests:", error)
       setError(error?.message || "Failed to load guest list")
@@ -147,13 +158,12 @@ export function BookOfGuests() {
         </div>
         
         <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-[#FFE5E4] mb-3 md:mb-6 text-balance drop-shadow-2xl relative">
-          <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-br from-[#B08981] via-[#EFBFBB] to-[#FFE5E4]">Book of Guests</span>
-          {/* Text glow effect */}
-          <span className="absolute inset-0 text-[#EFBFBB]/25 blur-2xl -z-10">Book of Guests</span>
+          <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-br from-[#B08981] via-[#EFBFBB] to-[#FFE5E4]">Guest Attendance</span>
+          <span className="absolute inset-0 text-[#EFBFBB]/25 blur-2xl -z-10">Guest Attendance</span>
         </h2>
         
         <p className="text-sm md:text-xl text-[#FFE5E4]/90 font-sans font-light max-w-2xl mx-auto px-4 leading-relaxed">
-          See who's celebrating with us on our special day
+          Track how many loved ones have RSVP’d, who can’t make it, and who we’re still waiting to hear from.
         </p>
 
         {/* Bottom decorative ornaments */}
@@ -182,23 +192,57 @@ export function BookOfGuests() {
               
               {/* Content */}
               <div className="relative z-10">
-                <div className="flex items-center justify-center gap-1 md:gap-3 mb-2 md:mb-4">
+                <div className="flex items-center justify-center gap-1 md:gap-3 mb-3 md:mb-4">
                   <div className="bg-gradient-to-r from-[#666956] to-[#8D8E7C] p-1 md:p-3 rounded-full shadow-lg">
                     <Heart className="text-[#FFE5E4] h-3 w-3 md:h-6 md:w-6" />
                   </div>
                   <h3 className="text-sm sm:text-2xl md:text-3xl font-playfair font-bold text-[#666956]">
-                    {totalGuests} {totalGuests === 1 ? "Guest" : "Guests"} Celebrating With Us
+                    RSVP Overview
                   </h3>
                 </div>
-                <p className="text-xs sm:text-base md:text-lg text-[#666956]/75 font-lora leading-relaxed">
-                  Thank you for confirming your RSVP! Your presence means the world to us.
+                <p className="text-xs sm:text-sm md:text-base text-[#666956]/80 font-lora leading-relaxed mb-4">
+                  These numbers update as guests send their RSVPs. Thank you for helping us prepare for the celebration.
                 </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                  <div className="bg-white/80 rounded-xl border border-[#B08981]/25 p-3 sm:p-4 shadow-sm">
+                    <p className="text-[10px] sm:text-xs uppercase tracking-wide text-[#666956]/70 font-semibold mb-1">
+                      Total Guests
+                    </p>
+                    <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#666956]">
+                      {stats.total}
+                    </p>
+                  </div>
+                  <div className="bg-green-50 rounded-xl border border-green-200 p-3 sm:p-4 shadow-sm">
+                    <p className="text-[10px] sm:text-xs uppercase tracking-wide text-green-700/80 font-semibold mb-1">
+                      Attending
+                    </p>
+                    <p className="text-xl sm:text-2xl md:text-3xl font-bold text-green-700">
+                      {stats.attending}
+                    </p>
+                  </div>
+                  <div className="bg-red-50 rounded-xl border border-red-200 p-3 sm:p-4 shadow-sm">
+                    <p className="text-[10px] sm:text-xs uppercase tracking-wide text-red-700/80 font-semibold mb-1">
+                      Not Attending
+                    </p>
+                    <p className="text-xl sm:text-2xl md:text-3xl font-bold text-red-700">
+                      {stats.notAttending}
+                    </p>
+                  </div>
+                  <div className="bg-yellow-50 rounded-xl border border-yellow-200 p-3 sm:p-4 shadow-sm">
+                    <p className="text-[10px] sm:text-xs uppercase tracking-wide text-yellow-700/80 font-semibold mb-1">
+                      Pending
+                    </p>
+                    <p className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-700">
+                      {stats.pending}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Enhanced guest list container */}
+        {/* Summary container (no individual names shown) */}
         <div className="max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="relative bg-gradient-to-br from-[#FFE5E4] via-white to-[#FFE5E4] backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl border-2 border-[#B08981]/35">
             {/* Decorative corner accents */}
@@ -228,7 +272,7 @@ export function BookOfGuests() {
                   <span className="font-lora text-xs md:text-lg">{error}</span>
                 </div>
               </div>
-            ) : guests.length === 0 ? (
+            ) : stats.total === 0 ? (
               <div className="flex items-center justify-center py-10 sm:py-16">
                 <div className="relative text-center bg-gradient-to-br from-[#402921] to-[#583016] rounded-2xl px-6 sm:px-10 py-8 sm:py-12 shadow-2xl border border-white/20 max-w-xl w-full">
                   {/* Decorative glow */}
@@ -256,77 +300,20 @@ export function BookOfGuests() {
                 </div>
               </div>
             ) : (
-              <div className="space-y-2 sm:space-y-6 relative z-10">
-                {guests.map((guest, index) => (
-                  <div
-                    key={index}
-                    className="relative"
-                  >
-                    {/* Main card */}
-                    <div className={`group relative p-2 sm:p-6 rounded-md sm:rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-                      index % 2 === 0 
-                        ? "bg-gradient-to-r from-[#BB8A3D]/10 to-white border-[#BB8A3D]/25 hover:border-[#BB8A3D]/40" 
-                        : "bg-gradient-to-r from-white to-[#CDAC77]/10 border-[#BB8A3D]/25 hover:border-[#BB8A3D]/40"
-                    }`}>
-                    
-                    <div className="flex flex-col gap-2 sm:gap-4">
-                      {/* Header section */}
-                      <div className="flex items-start gap-2 sm:gap-3">
-                        {/* Avatar */}
-                        <div className="relative h-8 w-8 sm:h-12 sm:w-12 flex-shrink-0">
-                          <div className="h-full w-full rounded-full bg-gradient-to-br from-[#666956] to-[#8D8E7C] text-[#FFE5E4] flex items-center justify-center font-semibold shadow-lg ring-2 ring-white text-xs sm:text-base">
-                            {getInitials(guest.Name)}
-                          </div>
-                        </div>
-                        
-                        {/* Name and Email */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2">
-                            <h4 className="font-lora text-[#666956] text-sm sm:text-xl font-semibold leading-tight transition-colors duration-300 group-hover:text-[#B08981]">
-                              {guest.Name}
-                            </h4>
-                          </div>
-                          {guest.Email && guest.Email !== "Pending" && (
-                            <div className="flex items-center text-xs sm:text-sm text-[#666956]/70 mt-0.5 sm:mt-1">
-                              <Mail className="h-2 w-2 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-[#B08981] flex-shrink-0" />
-                              <span className="font-lora break-all truncate text-xs sm:text-sm">{guest.Email}</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Divider */}
-                      <div className="h-px bg-gradient-to-r from-transparent via-[#BB8A3D]/30 to-transparent" />
-
-                      {/* Premium message section */}
-                      {guest.Message && (
-                        <div className="relative">
-                          <div className="bg-gradient-to-r from-[#B08981]/10 to-[#EFBFBB]/10 rounded-md sm:rounded-xl p-2 sm:p-4 border-l-2 sm:border-l-4 border-[#B08981]">
-                            <div className="flex items-start gap-1 sm:gap-3">
-                              <div className="bg-[#666956] p-0.5 sm:p-2 rounded-full flex-shrink-0">
-                                <MessageSquare className="h-2 w-2 sm:h-4 sm:w-4 text-[#FFE5E4]" />
-                              </div>
-                              <div className="flex-1">
-                                <p className="text-xs sm:text-base text-[#666956] font-lora leading-relaxed italic">
-                                  "{guest.Message}"
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Footer with guest number */}
-                      <div className="flex items-center justify-end pt-1 sm:pt-2 border-t border-[#B08981]/30">
-                        <div className="flex items-center gap-0.5 sm:gap-1">
-                          <User className="h-2 w-2 sm:h-3 sm:w-3 text-[#B08981]" />
-                          <span className="text-xs text-gray-500 font-lora">Guest #{index + 1}</span>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="relative z-10 py-6 sm:py-10">
+                <div className="max-w-2xl mx-auto text-center space-y-4">
+                  <Calendar className="h-8 w-8 sm:h-10 sm:w-10 mx-auto text-[#BB8A3D]" />
+                  <h3 className="text-lg sm:text-2xl md:text-3xl font-playfair font-bold text-[#402921]">
+                    Live RSVP Snapshot
+                  </h3>
+                  <p className="text-xs sm:text-sm md:text-base text-[#402921]/80 font-lora leading-relaxed">
+                    This section keeps your guests’ names private while still showing how many loved ones are joining you,
+                    who won’t be able to make it, and who has yet to respond.
+                  </p>
+                  <p className="text-[11px] sm:text-xs text-[#402921]/70 font-lora">
+                    For detailed guest information, please use the secure dashboard or RSVP search section.
+                  </p>
+                </div>
               </div>
             )}
           </div>

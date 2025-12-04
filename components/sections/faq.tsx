@@ -18,7 +18,7 @@ const faqItems: FAQItem[] = [
   {
     question: "What is the dress code?",
     answer:
-      "Principal Sponsors are requested to wear formal attire in any shade matching the palette, while Guests are encouraged to come in semi-formal attire; please avoid jeans and other casual wear.",
+      "Principal Sponsors are requested to wear formal attire in the shades of beige, while guests may come in formal or semi-formal attire in any color matching the event palette. Kindly avoid jeans and other casual wear.",
   },
   {
     question: "When and where is the ceremony?",
@@ -33,7 +33,7 @@ const faqItems: FAQItem[] = [
   {
     question: "When is the RSVP deadline?",
     answer:
-      "Kindly RSVP by February 1, 2026. Your response helps us finalize our guest list. Thank you! [RSVP_LINK]Click here to RSVP[/RSVP_LINK]",
+      "Kindly RSVP by January 9, 2025. Your response helps us finalize our guest list. Thank you! [RSVP_LINK]Click here to RSVP[/RSVP_LINK]",
   },
   {
     question: "Do you have a gift registry?",
