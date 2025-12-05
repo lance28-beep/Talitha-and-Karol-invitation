@@ -48,7 +48,7 @@ For a long time, our paths ran parallel — close, but never crossing. Then, in 
 fate finally decided it was time. A common friend introduced us, and what began as a simple conversation 
 soon grew into something that felt both new and familiar. \n
 
-By the first month of 2024, we officially began our journey together. 
+By the First Quarter of 2024, we officially began our journey together. 
 Since then, every day has been filled with warmth, and the quiet certainty that we’ve found home in each other.
 \n
 Looking back, it’s amazing how everything happened just as it should — not too early, not too late, but at the perfect time. Our story reminds us that love doesn’t rush; it waits for the right moment, and when it arrives, everything simply falls into place.
