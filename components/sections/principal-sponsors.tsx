@@ -37,7 +37,7 @@ export function PrincipalSponsors() {
     return (
       <div className={`flex flex-col ${containerAlign} justify-center py-1 sm:py-1.5 md:py-2 w-full`}>
         <p
-          className={`text-slate-700 text-[10px] min-[360px]:text-[11px] sm:text-[13px] md:text-base font-medium leading-tight sm:leading-snug whitespace-nowrap overflow-hidden text-ellipsis ${textAlign}`}
+          className={`text-slate-700 text-[9px] min-[360px]:text-[10px] sm:text-xs md:text-sm font-medium leading-tight sm:leading-snug whitespace-nowrap overflow-hidden text-ellipsis ${textAlign}`}
         >
           {name}
         </p>
