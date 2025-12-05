@@ -53,7 +53,7 @@ const faqItems: FAQItem[] = [
   {
     question: "What if I have dietary restrictions or allergies?",
     answer:
-      "Please mention any dietary restrictions, allergies, or special meal requirements in the message field when you submit your RSVP, or kindly contact the couples for any food restrictions. [DETAILS_LINK]For more information[/DETAILS_LINK], see the details section.",
+      "Please mention any dietary restrictions, allergies, or special meal requirements in the message field when you submit your RSVP, or kindly contact the couples for any food restrictions. [CONTACT_MODAL]Contact Number[/CONTACT_MODAL], see the details section.",
   },
   {
     question: "Can I take photos during the ceremony?",
@@ -74,9 +74,26 @@ const faqItems: FAQItem[] = [
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [isContactModalOpen, setContactModalOpen] = useState(false)
+  const [copiedContact, setCopiedContact] = useState<string | null>(null)
 
   const toggleItem = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
+  }
+
+  const contacts = [
+    { name: "Talitha", number: "09271600950" },
+    { name: "Karol", number: "09855540332" },
+  ]
+
+  const handleCopy = async (value: string) => {
+    try {
+      await navigator.clipboard.writeText(value)
+      setCopiedContact(value)
+      setTimeout(() => setCopiedContact(null), 1500)
+    } catch (error) {
+      console.error("Failed to copy contact number", error)
+    }
   }
 
   return (
@@ -301,6 +318,18 @@ export function FAQ() {
                                       </a>
                                       {item.answer.split("[/DETAILS_LINK]")[1]}
                                     </>
+                                  ) : item.answer.includes("[CONTACT_MODAL]") ? (
+                                    <>
+                                      {item.answer.split("[CONTACT_MODAL]")[0]}
+                                      <button
+                                        type="button"
+                                        className="text-[#B08981] underline font-semibold hover:text-[#EFBFBB] transition-colors"
+                                        onClick={() => setContactModalOpen(true)}
+                                      >
+                                        {item.answer.match(/\[CONTACT_MODAL\](.*?)\[\/CONTACT_MODAL\]/)?.[1]}
+                                      </button>
+                                      {item.answer.split("[/CONTACT_MODAL]")[1]}
+                                    </>
                                   ) : (
                                     item.answer
                                   )}
@@ -323,6 +352,91 @@ export function FAQ() {
           </div>
         </div>
       </div>
+
+      {isContactModalOpen && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center px-4 sm:px-6"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setContactModalOpen(false)}
+          />
+          <div className="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl border border-[#B08981]/30 overflow-hidden">
+            <div className="flex items-start justify-between p-4 border-b border-[#B08981]/20 bg-gradient-to-r from-[#FFE5E4]/70 via-white to-[#EFBFBB]/60">
+              <div>
+                <p className="text-xs uppercase tracking-wide text-[#666956] font-semibold">
+                  For more information
+                </p>
+                <h3 className="text-lg font-serif text-[#B08981]">Contact us here</h3>
+              </div>
+              <button
+                type="button"
+                className="text-[#666956] hover:text-[#B08981] rounded-full p-1 transition-colors"
+                aria-label="Close contact modal"
+                onClick={() => setContactModalOpen(false)}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="p-4 space-y-3 bg-gradient-to-b from-white via-[#FFE5E4]/30 to-white">
+              {contacts.map((contact) => {
+                const whatsappNumber = `63${contact.number.replace(/^0/, "")}`
+                return (
+                  <div
+                    key={contact.name}
+                    className="rounded-xl border border-[#B08981]/20 bg-white/80 shadow-sm p-3 space-y-2"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-xs text-[#666956]">Contact</p>
+                        <p className="text-base font-semibold text-[#B08981]">{contact.name}</p>
+                        <p className="text-sm text-[#666956] font-mono">{contact.number}</p>
+                      </div>
+                      {copiedContact === contact.number && (
+                        <span className="text-[11px] text-[#525E2C] bg-[#E6F0D8] px-2 py-1 rounded-full">
+                          Copied
+                        </span>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleCopy(contact.number)}
+                        className="text-sm font-medium text-white bg-[#B08981] hover:bg-[#9c7b74] rounded-lg py-2 transition-colors"
+                      >
+                        Copy
+                      </button>
+                      <a
+                        href={`tel:${contact.number}`}
+                        className="text-sm font-medium text-[#666956] border border-[#B08981]/30 hover:border-[#B08981]/60 rounded-lg py-2 text-center transition-colors"
+                      >
+                        Call
+                      </a>
+                      <a
+                        href={`sms:${contact.number}`}
+                        className="text-sm font-medium text-[#666956] border border-[#B08981]/30 hover:border-[#B08981]/60 rounded-lg py-2 text-center transition-colors"
+                      >
+                        SMS
+                      </a>
+                      <a
+                        href={`https://wa.me/${whatsappNumber}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-sm font-medium text-[#666956] border border-[#B08981]/30 hover:border-[#B08981]/60 rounded-lg py-2 text-center transition-colors"
+                      >
+                        WhatsApp
+                      </a>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      )}
     </Section>
   )
 }

@@ -242,82 +242,67 @@ export function BookOfGuests() {
           </div>
         </div>
 
-        {/* Summary container (no individual names shown) */}
-        <div className="max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="relative bg-gradient-to-br from-[#FFE5E4] via-white to-[#FFE5E4] backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl border-2 border-[#B08981]/35">
-            {/* Decorative corner accents */}
-            <div className="absolute -top-1 -left-1 w-4 h-4 bg-gradient-to-br from-[#D1AB6D] to-[#E0CFB5] rounded-full blur-sm opacity-70" />
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-bl from-[#D1AB6D] to-[#E0CFB5] rounded-full blur-sm opacity-70" />
-            <div className="absolute -bottom-1 -left-1 w-4 h-4 bg-gradient-to-tr from-[#D1AB6D] to-[#E0CFB5] rounded-full blur-sm opacity-70" />
-            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-tl from-[#D1AB6D] to-[#E0CFB5] rounded-full blur-sm opacity-70" />
-            
-            {/* Inner decorative border */}
-            <div className="absolute inset-2 border border-[#B08981]/30 rounded-xl" />
-            {isLoading ? (
-              <div className="flex items-center justify-center h-24 sm:h-48">
-                <div className="flex flex-col items-center gap-2 md:gap-4">
-                  <div className="relative">
-                    <Loader2 className="h-6 w-6 md:h-10 md:w-10 animate-spin text-[#402921]" />
-                    <div className="absolute inset-0 h-6 w-6 md:h-10 md:w-10 animate-ping rounded-full bg-[#BB8A3D]/25"></div>
+        {(isLoading || error || stats.total === 0) && (
+          <div className="max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+            <div className="relative bg-gradient-to-br from-[#FFE5E4] via-white to-[#FFE5E4] backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl border-2 border-[#B08981]/35">
+              {/* Decorative corner accents */}
+              <div className="absolute -top-1 -left-1 w-4 h-4 bg-gradient-to-br from-[#D1AB6D] to-[#E0CFB5] rounded-full blur-sm opacity-70" />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-bl from-[#D1AB6D] to-[#E0CFB5] rounded-full blur-sm opacity-70" />
+              <div className="absolute -bottom-1 -left-1 w-4 h-4 bg-gradient-to-tr from-[#D1AB6D] to-[#E0CFB5] rounded-full blur-sm opacity-70" />
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-tl from-[#D1AB6D] to-[#E0CFB5] rounded-full blur-sm opacity-70" />
+              
+              {/* Inner decorative border */}
+              <div className="absolute inset-2 border border-[#B08981]/30 rounded-xl" />
+              {isLoading ? (
+                <div className="flex items-center justify-center h-24 sm:h-48">
+                  <div className="flex flex-col items-center gap-2 md:gap-4">
+                    <div className="relative">
+                      <Loader2 className="h-6 w-6 md:h-10 md:w-10 animate-spin text-[#402921]" />
+                      <div className="absolute inset-0 h-6 w-6 md:h-10 md:w-10 animate-ping rounded-full bg-[#BB8A3D]/25"></div>
+                    </div>
+                    <span className="text-[#402921] font-lora text-xs md:text-lg font-medium">Loading guests...</span>
                   </div>
-                  <span className="text-[#402921] font-lora text-xs md:text-lg font-medium">Loading guests...</span>
                 </div>
-              </div>
-            ) : error ? (
-              <div className="flex items-center justify-center h-24 sm:h-48 text-red-500">
-                <div className="flex flex-col items-center gap-2 md:gap-4">
-                  <div className="bg-red-100 p-2 md:p-4 rounded-full">
-                    <MessageSquare className="h-5 w-5 md:h-8 md:w-8 text-red-500" />
+              ) : error ? (
+                <div className="flex items-center justify-center h-24 sm:h-48 text-red-500">
+                  <div className="flex flex-col items-center gap-2 md:gap-4">
+                    <div className="bg-red-100 p-2 md:p-4 rounded-full">
+                      <MessageSquare className="h-5 w-5 md:h-8 md:w-8 text-red-500" />
+                    </div>
+                    <span className="font-lora text-xs md:text-lg">{error}</span>
                   </div>
-                  <span className="font-lora text-xs md:text-lg">{error}</span>
                 </div>
-              </div>
-            ) : stats.total === 0 ? (
-              <div className="flex items-center justify-center py-10 sm:py-16">
-                <div className="relative text-center bg-gradient-to-br from-[#402921] to-[#583016] rounded-2xl px-6 sm:px-10 py-8 sm:py-12 shadow-2xl border border-white/20 max-w-xl w-full">
-                  {/* Decorative glow */}
-                  <div className="absolute -inset-1 rounded-2xl bg-white/10 blur-xl opacity-30 pointer-events-none" />
-                  <div className="relative">
-                    <div className="relative inline-flex items-center justify-center mb-4 sm:mb-6">
-                      <div className="absolute inset-0 rounded-full bg-white/20 blur-xl opacity-60" />
-                      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/25 flex items-center justify-center shadow-lg">
-                        <Heart className="h-7 w-7 sm:h-8 sm:w-8 text-[#FFF6E7]" />
+              ) : stats.total === 0 ? (
+                <div className="flex items-center justify-center py-10 sm:py-16">
+                  <div className="relative text-center bg-gradient-to-br from-[#402921] to-[#583016] rounded-2xl px-6 sm:px-10 py-8 sm:py-12 shadow-2xl border border-white/20 max-w-xl w-full">
+                    {/* Decorative glow */}
+                    <div className="absolute -inset-1 rounded-2xl bg-white/10 blur-xl opacity-30 pointer-events-none" />
+                    <div className="relative">
+                      <div className="relative inline-flex items-center justify-center mb-4 sm:mb-6">
+                        <div className="absolute inset-0 rounded-full bg-white/20 blur-xl opacity-60" />
+                        <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/25 flex items-center justify-center shadow-lg">
+                          <Heart className="h-7 w-7 sm:h-8 sm:w-8 text-[#FFF6E7]" />
+                        </div>
+                      </div>
+                      <h3 className="text-lg sm:text-2xl font-playfair font-bold text-[#FFF6E7] mb-2 sm:mb-3">
+                        No guests have RSVP'd yet
+                      </h3>
+                      <p className="text-xs sm:text-base text-[#FFF6E7]/90 font-lora max-w-md mx-auto leading-relaxed">
+                        Be the first to RSVP and kick off the celebration!
+                      </p>
+                      <div className="mt-4 sm:mt-6 flex justify-center">
+                        <div className="inline-flex items-center gap-2 bg-white text-[#402921] rounded-full px-3 sm:px-5 py-1.5 sm:py-2 shadow-md">
+                          <Sparkles className="h-4 w-4" />
+                          <span className="text-xs sm:text-sm font-lora">Search your name to RSVP</span>
+                        </div>
                       </div>
                     </div>
-                    <h3 className="text-lg sm:text-2xl font-playfair font-bold text-[#FFF6E7] mb-2 sm:mb-3">
-                      No guests have RSVP'd yet
-                    </h3>
-                    <p className="text-xs sm:text-base text-[#FFF6E7]/90 font-lora max-w-md mx-auto leading-relaxed">
-                      Be the first to RSVP and kick off the celebration!
-                    </p>
-                    <div className="mt-4 sm:mt-6 flex justify-center">
-                      <div className="inline-flex items-center gap-2 bg-white text-[#402921] rounded-full px-3 sm:px-5 py-1.5 sm:py-2 shadow-md">
-                        <Sparkles className="h-4 w-4" />
-                        <span className="text-xs sm:text-sm font-lora">Search your name to RSVP</span>
-                      </div>
-                    </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <div className="relative z-10 py-6 sm:py-10">
-                <div className="max-w-2xl mx-auto text-center space-y-4">
-                  <Calendar className="h-8 w-8 sm:h-10 sm:w-10 mx-auto text-[#BB8A3D]" />
-                  <h3 className="text-lg sm:text-2xl md:text-3xl font-playfair font-bold text-[#402921]">
-                    Live RSVP Snapshot
-                  </h3>
-                  <p className="text-xs sm:text-sm md:text-base text-[#402921]/80 font-lora leading-relaxed">
-                    This section keeps your guests’ names private while still showing how many loved ones are joining you,
-                    who won’t be able to make it, and who has yet to respond.
-                  </p>
-                  <p className="text-[11px] sm:text-xs text-[#402921]/70 font-lora">
-                    For detailed guest information, please use the secure dashboard or RSVP search section.
-                  </p>
-                </div>
-              </div>
-            )}
+              ) : null}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
